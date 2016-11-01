@@ -21,16 +21,17 @@ class CustomViewController: UIView{
     
     @IBAction func directions(_ sender: AnyObject) {
         
-        if (UIApplication.shared.canOpenURL(NSURL(string:"comgooglemaps://")! as URL)) {
+        /*if (UIApplication.shared.canOpenURL(NSURL(string:"comgooglemaps://")! as URL)) {
             UIApplication.shared.openURL(NSURL(string:
                 "comgooglemaps://?saddr=&daddr=\(102.21),\(12.04)&directionsmode=driving")! as URL)
             
         } else {
             NSLog("Can't use comgooglemaps://");
-        }
+        }*/
+        //OPEN GOOGLE MAPS DIRECTIONS.
     }
     
-    class func initWithTitle(name: String, bio : String, image: UIImage? = nil, frame : CGRect) -> UIView {
+    class func initWithGeotification(name: String, bio : String, image: UIImage? = nil, frame : CGRect) -> UIView{
         
         let customView = UINib(nibName: "CustomView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! CustomViewController
         

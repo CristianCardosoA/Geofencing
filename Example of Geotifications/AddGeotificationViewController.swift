@@ -1,11 +1,12 @@
 import UIKit
 import MapKit
 
+/*
 protocol AddGeotificationsViewControllerDelegate {
     func addGeotificationViewController(controller: AddGeotificationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D,
                                         radius: Double, identifier: String, note: String)
 }
-
+*/
 class AddGeotificationViewController: UITableViewController {
     
     @IBOutlet var addButton: UIBarButtonItem!
@@ -31,13 +32,14 @@ class AddGeotificationViewController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction private func onAdd(sender: AnyObject) {
+    /*@IBAction private func onAdd(sender: AnyObject) {
         let coordinate = mapView.centerCoordinate
         let radius = Double(radiusTextField.text!) ?? 0
         let identifier = NSUUID().uuidString
         let note = noteTextField.text
         delegate?.addGeotificationViewController(controller: self, didAddCoordinate: coordinate, radius: radius, identifier: identifier, note: note!)
     }
+ */
     
     @IBAction private func onZoomToCurrentLocation(sender: AnyObject) {
         mapView.zoomToUserLocation()

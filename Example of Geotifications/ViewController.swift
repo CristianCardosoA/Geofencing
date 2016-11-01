@@ -18,63 +18,73 @@ var isCustomViewOpen = false
 
 class ViewController: UIViewController{
     
+    var delegateAddGeotification: AddGeotificationsViewControllerDelegate?
+    
+    var geotifications: [Geotification] = []
+    
+    var locationManager = CLLocationManager()
+    
+    
     @IBOutlet var map: MKMapView!
     
+    
     @IBAction func add(_ sender: AnyObject) {
-        
+        showAlertWithInput(withTitle: "Add a geotification", message: "", delegate:  delegateAddGeotification)
     }
     
-    func showLifeEventView(){
-    
-        let image : UIImage = UIImage(named:"grandma.jpg")!
-        let customView = CustomViewController.initWithTitle(name: "Grandmother", bio : "Gwyneth Paltrow", image: image, frame: CGRect(x: 0, y: view.frame.size.height - (view.frame.size.height * 0.420) , width: self.view.frame.width, height: (view.frame.size.height * 0.420) ))
-        
-        if !isCustomViewOpen {
-            isCustomViewOpen = true
-            UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: {
-                self.view.addSubview(customView)
-                self.view.layoutIfNeeded()
-                }, completion: nil)
-            
-        }
-        let tapGesture = UITapGestureRecognizer(target:self, action: #selector(ViewController.removeSubview))
-        customView.addGestureRecognizer(tapGesture)
-    }
-    
-    
-    func removeSubview(){
-        if let viewWithTag = self.view.viewWithTag(100) {
-            viewWithTag.removeFromSuperview()
-            isCustomViewOpen = false
-        }
-    }
     
     @IBAction func currentLocation(_ sender: AnyObject) {
         map.zoomToUserLocation()
     }
     
-    var geotifications: [Geotification] = []
-
-    var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        delegateAddGeotification = self
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+
         loadAllGeotifications()
                 
         let uilongPress = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.longPress(gestureRecognizer:)))
         
-        uilongPress.minimumPressDuration = 2
+        uilongPress.minimumPressDuration = 1
         
         map.addGestureRecognizer(uilongPress)
         
         map.delegate = self
-        
     }
+    
+    func showLifeEventView(anotation : MKAnnotation){
+        
+        let image : UIImage = UIImage(named:"grandma.jpg")!
+        let customView = CustomViewController.initWithGeotification(name: "\(anotation.title)", bio : "Gwyneth Paltrow", image: image, frame: CGRect(x: 0, y: view.frame.size.height - (view.frame.size.height * 0.420) , width: self.view.frame.width, height: (view.frame.size.height * 0.420) ))
+        
+        if !isCustomViewOpen {
+            isCustomViewOpen = true
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: {
+                self.view.addSubview(customView)
+                //self.view.layoutIfNeeded()
+                }, completion: nil)
+            
+        }
+        let tapGesture = CustomTapGestureRecognizer(target:self, action: #selector(ViewController.removeSubview(customTap:)))
+        tapGesture.anotationView = map.view(for: anotation)
+        customView.addGestureRecognizer(tapGesture)
+    }
+    
+    
+    func removeSubview(customTap : CustomTapGestureRecognizer){
+        if let viewWithTag = self.view.viewWithTag(100) {
+            viewWithTag.removeFromSuperview()
+            isCustomViewOpen = false
+            let view = customTap.anotationView
+            view?.image = UIImage(named: "point.png")
+        }
+    }
+
     
     func longPress(gestureRecognizer : UIGestureRecognizer){
         
@@ -84,22 +94,16 @@ class ViewController: UIViewController{
             
             let newCoordinate = self.map.convert(touchPoint, toCoordinateFrom: self.map)
             
-            let newYorkLocation = newCoordinate
-            // Drop a pin
             let dropPin = MKPointAnnotation()
-            dropPin.coordinate = newYorkLocation
-            self.map.addAnnotation(dropPin)
             
+            dropPin.coordinate = newCoordinate
+            
+            self.map.addAnnotation(dropPin)
         }
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         let location = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
         
         let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
@@ -165,22 +169,29 @@ class ViewController: UIViewController{
         UserDefaults.standard.set(items, forKey: PreferencesKeys.savedItems)
     }
     
-}
-
-// MARK: AddGeotificationViewControllerDelegate
-extension ViewController: AddGeotificationsViewControllerDelegate {
-    
-    func addGeotificationViewController(controller: AddGeotificationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String) {
-        controller.dismiss(animated: true, completion: nil)
-        // 1
-        let clampedRadius = min(radius, locationManager.maximumRegionMonitoringDistance)
-        let geotification = Geotification(coordinate: coordinate, radius: clampedRadius, identifier: identifier, note: note)
-        add(geotification: geotification)
-        // 2
-        startMonitoring(geotification: geotification)
-        saveAllGeotifications()
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
+}
+
+extension ViewController: AddGeotificationsViewControllerDelegate {
+    
+    func addGeotificationViewController(didAddCoordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String){
+
+        
+        let clampedRadius = min(radius, locationManager.maximumRegionMonitoringDistance)
+        let geotification = Geotification(coordinate: didAddCoordinate, radius: clampedRadius, identifier: identifier, note: note)
+        
+        showAlert(withTitle: "Geotification Added", message: note)
+
+        add(geotification: geotification)
+        startMonitoring(geotification: geotification)
+        saveAllGeotifications()
+        
+
+    }
 }
 
 extension ViewController: CLLocationManagerDelegate {
@@ -200,7 +211,20 @@ extension ViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
-        showLifeEventView()
+        let selectedAnnotation = view.annotation
+        
+            for annotation in mapView.annotations {
+                let viewI = mapView.view(for: annotation)
+
+                if !(viewI?.annotation is MKUserLocation){
+                    if annotation.isEqual(selectedAnnotation) {
+                        viewI?.image = UIImage(named: "focus.png")
+                        showLifeEventView(anotation: annotation) //did select a point on Map.
+                    }else{
+                        viewI?.image = UIImage(named: "point.png")
+                    }
+                }
+            }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -225,7 +249,8 @@ extension ViewController: MKMapViewDelegate {
             // Configure your annotation view here
             //annotationView.canShowCallout = true
             annotationView.image = UIImage(named: "point.png")
-            let tapGesture = UITapGestureRecognizer(target:self, action: #selector(ViewController.removeSubview))
+            let tapGesture = CustomTapGestureRecognizer(target:self, action: #selector(ViewController.removeSubview(customTap:)))
+            tapGesture.anotationView = annotationView
             annotationView.addGestureRecognizer(tapGesture)
         }
         
@@ -244,4 +269,3 @@ extension ViewController: MKMapViewDelegate {
     }
 
 }
-

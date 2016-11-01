@@ -8,15 +8,25 @@
 
 import UIKit
 import CoreData
+import CoreLocation
+import MapKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    let locationManager = CLLocationManager()
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    /*func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        return true
+    }*/
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        UIApplication.shared.cancelAllLocalNotifications()
         return true
     }
 
@@ -88,6 +98,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    func handleEvent(forRegion region: CLRegion!) {
+        
+        // Show an alert if application is active
+        if UIApplication.shared.applicationState == .active {
+            guard let message = note(fromRegionIdentifier: region.identifier) else { return }
+            let controller = window?.rootViewController as! ViewController
+            controller.showLifeEventView(anotation: message)
+        } else {
+            // Otherwise present a local notification
+            /*let notification = UILocalNotification()
+            notification.alertBody = note(fromRegionIdentifier: region.identifier)
+            notification.soundName = "Default"
+            UIApplication.shared.presentLocalNotificationNow(notification)
+        */
+        }
+    }
+    
+    func note(fromRegionIdentifier identifier: String) -> MKAnnotation? {
+        let savedItems = UserDefaults.standard.array(forKey: PreferencesKeys.savedItems) as? [NSData]
+        let geotifications = savedItems?.map { NSKeyedUnarchiver.unarchiveObject(with: $0 as Data) as? Geotification }
+        let index = geotifications?.index { $0?.identifier == identifier }
+        return index != nil ? geotifications?[index!] : nil
+    }
 
+}
+
+extension AppDelegate: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            handleEvent(forRegion: region)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            handleEvent(forRegion: region)
+        }
+    }
 }
 

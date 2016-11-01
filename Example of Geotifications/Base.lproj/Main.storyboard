@@ -28,6 +28,11 @@
                                                 <action selector="currentLocation:" destination="BYZ-38-t0r" id="52k-N1-o48"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="NI7-Nd-ncd">
+                                            <connections>
+                                                <action selector="add:" destination="BYZ-38-t0r" id="H4z-TJ-w9W"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>

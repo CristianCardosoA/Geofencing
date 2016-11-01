@@ -41,7 +41,7 @@
                     <nil key="highlightedColor"/>
                     <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ring" translatesAutoresizingMaskIntoConstraints="NO" id="brQ-re-nsI">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ring.png" translatesAutoresizingMaskIntoConstraints="NO" id="brQ-re-nsI">
                     <frame key="frameInset" minX="16" minY="55" width="25" height="28"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="brQ-re-nsI" secondAttribute="height" multiplier="25:28" id="5w8-yA-oj4"/>
@@ -114,6 +114,6 @@
     </objects>
     <resources>
         <image name="directions.png" width="56" height="56"/>
-        <image name="ring" width="16" height="21"/>
+        <image name="ring.png" width="16" height="21"/>
     </resources>
 </document>

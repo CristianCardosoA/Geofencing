@@ -24,24 +24,16 @@ class Geotification: NSObject, NSCoding, MKAnnotation {
     var radius: CLLocationDistance
     var identifier: String
     var note: String
-    
-    var title: String? {
-        if note.isEmpty {
-            return "No Note"
-        }
-        return note
-    }
-    
-    var subtitle: String? {
-        let eventTypeString = "On entry"
-        return "Radius: \(radius)m - \(eventTypeString)"
-    }
+    var title: String?
+    var subtitle: String?
     
     init(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance, identifier: String, note: String) {
         self.coordinate = coordinate
         self.radius = radius
         self.identifier = identifier
         self.note = note
+        self.title = note
+        self.subtitle = note
     }
     
     // MARK: NSCoding
