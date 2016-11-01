@@ -16,11 +16,12 @@
 		FA2372B61DC7BF1300A8899C /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2372B51DC7BF1300A8899C /* Geotification.swift */; };
 		FA43D7C81DC867F3009C748E /* CustomAnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43D7C71DC867F3009C748E /* CustomAnotation.swift */; };
 		FA43D7CB1DC8739F009C748E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA43D7CA1DC8739F009C748E /* MapKit.framework */; };
-		FA43D7D31DC87887009C748E /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = FA43D7D21DC87887009C748E /* point.png */; };
-		FA43D7D51DC881AD009C748E /* directions.png in Resources */ = {isa = PBXBuildFile; fileRef = FA43D7D41DC881AD009C748E /* directions.png */; };
+		FA52F89A1DC8E94F00D7F217 /* grandma.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA52F8991DC8E94F00D7F217 /* grandma.jpg */; };
+		FA52F89C1DC8E95800D7F217 /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = FA52F89B1DC8E95800D7F217 /* point.png */; };
+		FA52F89E1DC8E95F00D7F217 /* directions.png in Resources */ = {isa = PBXBuildFile; fileRef = FA52F89D1DC8E95F00D7F217 /* directions.png */; };
+		FA52F8A01DC8E9D600D7F217 /* CurrentLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA52F89F1DC8E9D600D7F217 /* CurrentLocation@2x.png */; };
 		FA77B77E1DC7D2CB00F36EC5 /* AddGeotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77B77D1DC7D2CB00F36EC5 /* AddGeotificationViewController.swift */; };
 		FA77B7831DC7D69F00F36EC5 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77B7821DC7D69F00F36EC5 /* CustomViewController.swift */; };
-		FA77B7851DC820E600F36EC5 /* grandma.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA77B7841DC820E600F36EC5 /* grandma.jpg */; };
 		FA77B7871DC82F5300F36EC5 /* CustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA77B7861DC82F5300F36EC5 /* CustomView.xib */; };
 /* End PBXBuildFile section */
 
@@ -36,11 +37,12 @@
 		FA2372B51DC7BF1300A8899C /* Geotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
 		FA43D7C71DC867F3009C748E /* CustomAnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnotation.swift; sourceTree = "<group>"; };
 		FA43D7CA1DC8739F009C748E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		FA43D7D21DC87887009C748E /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = point.png; path = ../../../../Downloads/point.png; sourceTree = "<group>"; };
-		FA43D7D41DC881AD009C748E /* directions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = directions.png; path = ../../../../Downloads/directions.png; sourceTree = "<group>"; };
+		FA52F8991DC8E94F00D7F217 /* grandma.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = grandma.jpg; path = ../../../Downloads/grandma.jpg; sourceTree = "<group>"; };
+		FA52F89B1DC8E95800D7F217 /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = point.png; path = ../../../Downloads/point.png; sourceTree = "<group>"; };
+		FA52F89D1DC8E95F00D7F217 /* directions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = directions.png; sourceTree = "<group>"; };
+		FA52F89F1DC8E9D600D7F217 /* CurrentLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CurrentLocation@2x.png"; sourceTree = "<group>"; };
 		FA77B77D1DC7D2CB00F36EC5 /* AddGeotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGeotificationViewController.swift; sourceTree = "<group>"; };
 		FA77B7821DC7D69F00F36EC5 /* CustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
-		FA77B7841DC820E600F36EC5 /* grandma.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = grandma.jpg; path = ../../../../Downloads/grandma.jpg; sourceTree = "<group>"; };
 		FA77B7861DC82F5300F36EC5 /* CustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,10 +83,11 @@
 				FA2372B01DC7BDBD00A8899C /* Utils */,
 				FA2372B31DC7BE2500A8899C /* controllers */,
 				FA23729F1DC7B59400A8899C /* Main.storyboard */,
-				FA43D7D21DC87887009C748E /* point.png */,
-				FA43D7D41DC881AD009C748E /* directions.png */,
+				FA52F89D1DC8E95F00D7F217 /* directions.png */,
+				FA52F89B1DC8E95800D7F217 /* point.png */,
+				FA52F8991DC8E94F00D7F217 /* grandma.jpg */,
+				FA52F89F1DC8E9D600D7F217 /* CurrentLocation@2x.png */,
 				FA23729B1DC7B59400A8899C /* AppDelegate.swift */,
-				FA77B7841DC820E600F36EC5 /* grandma.jpg */,
 				FA2372A71DC7B59400A8899C /* LaunchScreen.storyboard */,
 				FA2372AA1DC7B59400A8899C /* Info.plist */,
 				FA2372A21DC7B59400A8899C /* Example_of_Geotifications.xcdatamodeld */,
@@ -194,12 +197,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA77B7851DC820E600F36EC5 /* grandma.jpg in Resources */,
+				FA52F89A1DC8E94F00D7F217 /* grandma.jpg in Resources */,
 				FA77B7871DC82F5300F36EC5 /* CustomView.xib in Resources */,
-				FA43D7D31DC87887009C748E /* point.png in Resources */,
 				FA2372A91DC7B59400A8899C /* LaunchScreen.storyboard in Resources */,
 				FA2372A11DC7B59400A8899C /* Main.storyboard in Resources */,
-				FA43D7D51DC881AD009C748E /* directions.png in Resources */,
+				FA52F8A01DC8E9D600D7F217 /* CurrentLocation@2x.png in Resources */,
+				FA52F89E1DC8E95F00D7F217 /* directions.png in Resources */,
+				FA52F89C1DC8E95800D7F217 /* point.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,7 +23,7 @@
                                 <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Geotifications" id="Sa4-H3-qnU">
-                                        <barButtonItem key="leftBarButtonItem" image="CurrentLocation" id="Ts2-wb-GxG">
+                                        <barButtonItem key="leftBarButtonItem" image="CurrentLocation.png" id="Ts2-wb-GxG">
                                             <connections>
                                                 <action selector="currentLocation:" destination="BYZ-38-t0r" id="52k-N1-o48"/>
                                             </connections>
@@ -53,6 +53,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CurrentLocation" width="15" height="15"/>
+        <image name="CurrentLocation.png" width="15" height="15"/>
     </resources>
 </document>
