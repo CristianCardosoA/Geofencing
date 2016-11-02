@@ -89,8 +89,6 @@ class ViewController: UIViewController{
             tapGesture.anotationView?.image = UIImage(named: "focus.png")
             customView.addGestureRecognizer(tapGesture)
 
-        }else{
-         print("null view")
         }
     }
     
@@ -317,7 +315,7 @@ extension ViewController: MKMapViewDelegate {
         // Better to make this class property
         let annotationIdentifier = "AnnotationIdentifier"
         
-       /* var annotationView: MKAnnotationView?
+        var annotationView: MKAnnotationView?
         if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) {
             annotationView = dequeuedAnnotationView
             annotationView?.annotation = annotation
@@ -334,9 +332,9 @@ extension ViewController: MKMapViewDelegate {
             let tapGesture = CustomTapGestureRecognizer(target:self, action: #selector(ViewController.removeSubview(customTap:)))
             tapGesture.anotationView = annotationView
             annotationView.addGestureRecognizer(tapGesture)
-        }*/
+        }
         
-        if annotation is Geotification {
+        /*if annotation is Geotification {
             if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) {
                 annotationView.annotation = annotation
                 return annotationView
@@ -353,7 +351,8 @@ extension ViewController: MKMapViewDelegate {
             }
             
         }
-        return nil
+         */
+        return annotationView
 
     }
     
