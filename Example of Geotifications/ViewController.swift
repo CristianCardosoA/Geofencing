@@ -27,7 +27,6 @@ class ViewController: UIViewController{
     
     var context : NSManagedObjectContext? = nil
     
-    
     @IBOutlet var map: MKMapView!
     
     
