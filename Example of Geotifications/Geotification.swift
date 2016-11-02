@@ -32,8 +32,6 @@ class Geotification: NSObject, NSCoding, MKAnnotation {
         self.radius = radius
         self.identifier = identifier
         self.note = note
-        self.title = note
-        self.subtitle = note
     }
     
     // MARK: NSCoding

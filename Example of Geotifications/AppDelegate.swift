@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let locationManager = CLLocationManager()
     var window: UIWindow?
+    var context : NSManagedObjectContext? = nil
 
 
     /*func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -26,7 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-        UIApplication.shared.cancelAllLocalNotifications()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        context = appDelegate.persistentContainer.viewContext
+
         return true
     }
 
@@ -99,44 +103,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func handleEvent(forRegion region: CLRegion!) {
+    func handleEventEnter(forRegion region: CLRegion!) {
         
-        // Show an alert if application is active
         if UIApplication.shared.applicationState == .active {
-            guard let message = note(fromRegionIdentifier: region.identifier) else { return }
             let controller = window?.rootViewController as! ViewController
+            guard let message = note(fromRegionIdentifier: region.identifier, viewController: controller) else { return }
             controller.showLifeEventView(anotation: message)
-        } else {
-            // Otherwise present a local notification
-            /*let notification = UILocalNotification()
-            notification.alertBody = note(fromRegionIdentifier: region.identifier)
-            notification.soundName = "Default"
-            UIApplication.shared.presentLocalNotificationNow(notification)
-        */
         }
     }
     
-    func note(fromRegionIdentifier identifier: String) -> MKAnnotation? {
-        let savedItems = UserDefaults.standard.array(forKey: PreferencesKeys.savedItems) as? [NSData]
-        let geotifications = savedItems?.map { NSKeyedUnarchiver.unarchiveObject(with: $0 as Data) as? Geotification }
-        let index = geotifications?.index { $0?.identifier == identifier }
-        return index != nil ? geotifications?[index!] : nil
+    func handleEventExit(forRegion region: CLRegion!) {
+        
+        if UIApplication.shared.applicationState == .active {
+            let controller = window?.rootViewController as! ViewController
+            guard let message = note(fromRegionIdentifier: region.identifier, viewController: controller) else { return }
+            controller.removeSubview(anotation: message)
+        }
     }
 
+    
+    func note(fromRegionIdentifier identifier: String, viewController : ViewController) -> MKAnnotation? {
+        
+        var index = 0
+        
+        for i in 0..<viewController.geotifications.count {
+            if viewController.geotifications[i].identifier == identifier{
+                index = i
+            }
+        }
+        
+        return viewController.geotifications[index]
+    }
+    
 }
 
 extension AppDelegate: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         if region is CLCircularRegion {
-            handleEvent(forRegion: region)
+            handleEventEnter(forRegion: region)
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         if region is CLCircularRegion {
-            handleEvent(forRegion: region)
+            handleEventExit(forRegion: region)
         }
     }
+ 
 }
 

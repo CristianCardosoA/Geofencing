@@ -26,9 +26,7 @@
                         <constraint firstAttribute="height" constant="121" id="qtH-L9-B6d"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Grandfather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D47-4e-TKk">
-                    <frame key="frameInset" minX="147" minY="110" width="219" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grandfather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="2" translatesAutoresizingMaskIntoConstraints="NO" id="D47-4e-TKk">
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     <nil key="highlightedColor"/>
@@ -68,7 +66,7 @@
                     <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="27 April 1945" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="2" translatesAutoresizingMaskIntoConstraints="NO" id="bYY-2l-z8I">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="27 April 1945" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="3" translatesAutoresizingMaskIntoConstraints="NO" id="bYY-2l-z8I">
                     <frame key="frameInset" minX="147" minY="60" width="145" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -91,13 +89,16 @@
                 <constraint firstItem="mBn-OJ-AeB" firstAttribute="leading" secondItem="bYY-2l-z8I" secondAttribute="trailing" constant="20" id="1Lu-ed-JX6"/>
                 <constraint firstItem="vWK-Dc-aLU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="45" id="6oH-8d-uMQ"/>
                 <constraint firstAttribute="bottom" secondItem="vWK-Dc-aLU" secondAttribute="bottom" id="7hf-ig-Xox"/>
+                <constraint firstItem="D47-4e-TKk" firstAttribute="leading" secondItem="3aR-f4-EUQ" secondAttribute="trailing" constant="19" id="EmQ-6C-xBo"/>
                 <constraint firstItem="brQ-re-nsI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" constant="55" id="MqX-sc-0oF"/>
                 <constraint firstAttribute="trailing" secondItem="mBn-OJ-AeB" secondAttribute="trailing" constant="25" id="QOl-dW-ul2"/>
                 <constraint firstItem="3aR-f4-EUQ" firstAttribute="top" secondItem="brQ-re-nsI" secondAttribute="bottom" constant="27" id="WBO-gG-3Om"/>
                 <constraint firstItem="3aR-f4-EUQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Y6r-kf-QnO"/>
                 <constraint firstItem="bYY-2l-z8I" firstAttribute="leading" secondItem="brQ-re-nsI" secondAttribute="trailing" constant="106" id="eAO-tw-sfh"/>
                 <constraint firstItem="mBn-OJ-AeB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="hhX-Sa-a95"/>
+                <constraint firstItem="D47-4e-TKk" firstAttribute="top" secondItem="mBn-OJ-AeB" secondAttribute="bottom" constant="25" id="mIR-Ib-QyZ"/>
                 <constraint firstAttribute="trailing" secondItem="vWK-Dc-aLU" secondAttribute="trailing" id="mSx-or-byn"/>
+                <constraint firstAttribute="trailing" secondItem="D47-4e-TKk" secondAttribute="trailing" constant="20" id="pDl-vb-Dbx"/>
                 <constraint firstItem="bYY-2l-z8I" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="60" id="rID-QC-81V"/>
                 <constraint firstItem="vWK-Dc-aLU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="v3z-nW-pof"/>
             </constraints>
